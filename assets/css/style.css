@@ -8,8 +8,30 @@ body {
     /* background-color: none; */
     color: white;
     background: transparent;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 td, th {
     text-align: center;
+}
+
+.panel {
+    background-color: rgba(228, 207, 114, 0.555);
+    font-weight: bold;
+    color: black;
+}
+
+/* #trainTable {
+    font-weight: bold;
+    color: black;
+} */
+
+.panel-title {
+    font-weight: bold;
+    color: black;
+}
+
+.form-group {
+    color: rgb(34, 25, 2);
 }

@@ -29,27 +29,27 @@
 
         <!-- Jumbotron -->
         <div class="jumbotron mainHeader">
-            <h1 class="text-center">Anytime is Train Time</h1>
-            <h3 class="text-center">Choo Choo. Chee Chee.</h3>
+            <h1 class="text-center">Round de Town Train Scheduler</h1>
+            <h3 class="text-center">Getting you where you need to go</h3>
         </div>
 
         <div class="row firstRow">
             <div class="col-lg-12">
                 <!-- Employee Data -->
-                <div class="panel panel-primary">
+                <div class="panel panel-warning">
                     <div class="panel-heading">
                         <h3 class="panel-title">Current Train Schedule</h3>
                     </div>
-                    <div class="panel-body">
-                        <table class="table table-hover">
+                    <div class="panel-body trainList">
+                        <table class="table table-hover" id = "trainTable">
                             <thead>
                                 <tr>
-                                    <th>Train Name</th>
-                                    <th>Destination</th>
-                                    <th>Frequency (min)</th>
-                                    <th>Next Arrival</th>
-                                    <th>Minutes Away</th>
-                                    <!-- <th>Total Billed ($)</th> -->
+                                    <th>TRAIN NAME</th>
+                                    <th>DESTINATION</th>
+                                    <th>FREQUENCY (min)</th>
+                                    <th>NEXT ARRIVAL</th>
+                                    <th>MINS AWAY</th>
+                                    <th>Delete Train?</th>
 
                                 </tr>
                             </thead>
@@ -62,10 +62,10 @@
             </div>
         </div>
 
-        <div class="row firstRow">
+        <div class="row secondRow">
             <div class="col-lg-12">
                 <!-- Enter new employee -->
-                <div class="panel panel-primary">
+                <div class="panel panel-warning">
                     <div class="panel-heading">
                         <h3 class="panel-title">Add Train</h3>
                     </div>
@@ -96,7 +96,7 @@
                                 <input type="text" class="form-control" id="freqInput">
                             </div>
 
-                            <button type="submit" class="btn btn-primary" id="addTrainBtn">Submit</button>
+                            <button type="submit" class="btn btn-default" id="addTrainBtn">Submit</button>
                         </form>
 
                     </div>
