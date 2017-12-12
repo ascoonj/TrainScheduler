@@ -28,7 +28,8 @@ $("#addTrainBtn").on("click", function (event) {
     // Get the input values
     var trainName = $("#nameInput").val().trim();
     var trainDest = $("#destInput").val().trim();
-    var trainStart = moment($("#startInput").val().trim().subtract(1, "years"), "HH:mm").format("X");
+    //var trainStart = moment($("#startInput").val().trim().subtract(1, "years"), "HH:mm").format("X");
+    var trainStart = moment($("#startInput").val().trim(), "HH:mm").subtract(1, "years").format("X");
     var trainFreq = $("#freqInput").val().trim();
   
     // Log the values to the console
@@ -59,7 +60,7 @@ $("#addTrainBtn").on("click", function (event) {
         var currentTrain = childSnapshot.val();
 
          // First Time (pushed back 1 year to make sure it comes before current time)
-        var trainStartConverted = moment(currentTrain.start, "hh:mm").subtract(1, "years");
+        var trainStartConverted = moment.unix(currentTrain.start, "hh:mm").subtract(1, "years");
         console.log(trainStartConverted);
 
         // Current Time
