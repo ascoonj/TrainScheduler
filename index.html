@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Train Scheduler</title>
+
+    <!-- Bootstrap File -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+        
+    <!-- My CSS File -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+
+    <!-- Moment.js Reference -->
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js></script>
+</head>
+ 
+<body>
+
+    <!-- Overall Bootstrap Grid -->
+    <div class="container">
+
+        <!-- Jumbotron -->
+        <div class="jumbotron mainHeader">
+            <h1 class="text-center">Anytime is Train Time</h1>
+            <h3 class="text-center">Choo Choo. Chee Chee.</h3>
+        </div>
+
+        <div class="row firstRow">
+            <div class="col-lg-12">
+                <!-- Employee Data -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Current Train Schedule</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Train Name</th>
+                                    <th>Destination</th>
+                                    <th>Frequency (min)</th>
+                                    <th>Next Arrival</th>
+                                    <th>Minutes Away</th>
+                                    <!-- <th>Total Billed ($)</th> -->
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row firstRow">
+            <div class="col-lg-12">
+                <!-- Enter new employee -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add Train</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="nameInput">Train Name</label>
+                                <input type="text" class="form-control" id="nameInput">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="destInput">Destination</label>
+                                <input type="text" class="form-control" id="destInput">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="startInput">First Train Time (HH:mm - military time)</label>
+                                <input type="text" class="form-control" id="startInput">
+                            </div>
+
+                            <!-- <div class="form-group">
+                                <label for="lastInput">Start Date (DD/MM/YY - ex: 01/01/89)</label>
+                                <input type="text" class="form-control" id="lastInput">
+                            </div> -->
+
+                            <div class="form-group">
+                                <label for="freqInput">Frequency (min)</label>
+                                <input type="text" class="form-control" id="freqInput">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" id="addTrainBtn">Submit</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My JS File -->
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+</body>
+
+</html>

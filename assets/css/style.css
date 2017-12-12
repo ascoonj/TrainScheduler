@@ -1,0 +1,15 @@
+body {
+    background-image: url("../images/station-1.jpg");
+    background-size: cover; 
+}
+
+.mainHeader {
+    /* background-image: url("../images/station-resize.jpg"); */
+    /* background-color: none; */
+    color: white;
+    background: transparent;
+}
+
+td, th {
+    text-align: center;
+}
