@@ -14,9 +14,8 @@ firebase.initializeApp(config);
 // Assign the reference to the database to a variable named 'database'
 //var database = ...
 var database = firebase.database();
-
+//var trainEndPoint = database.ref("/trainList")
 // Initial Values
-
 
 
 
@@ -47,14 +46,19 @@ $("#addTrainBtn").on("click", function (event) {
             name: trainName,
             dest: trainDest,
             start: trainStart,
-            freq: trainFreq
+            freq: trainFreq,
+            key: database.ref().push().key
         };
 
-        database.ref().push(newTrain);
+        console.log(newTrain.name);
+        console.log(newTrain.key);
+
+        database.ref().child(newTrain.key).set(newTrain);
+        //database.ref().push(newTrain);
 
 
     } else {
-        alert("You must complete all fields");
+        alert("You must complete all fields to add a train.");
     }
     // Clear the input fields in preparation for new user entries
     $("#nameInput").val("");
@@ -71,10 +75,10 @@ database.ref().on("child_added", function (snapshot) {
     console.log(snapshot.val().name);
 
     var currentTrain = snapshot.val();
-    var trainKey = snapshot.key;
+    // var trainKey = snapshot.key;
 
     console.log(currentTrain);
-    console.log(trainKey);
+    //console.log(trainKey);
 
     // First Time (pushed back 1 year to make sure it comes before current time)
     var trainStartConverted = moment.unix(currentTrain.start, "hh:mm").subtract(1, "years");
@@ -114,7 +118,7 @@ database.ref().on("child_added", function (snapshot) {
         moment(nextTrain).format("h:mm a") + "</td><td>" +
         tMinutesTilTrain + "</td><td><button class='btn btn-default delTrain'>Remove</button></td></tr>");
 
-    $(".delTrain").attr("data-key", trainKey);
+    $(".delTrain").attr("data-key", currentTrain.key);
 
 });
 
@@ -131,8 +135,45 @@ $("#trainTable").on("click", ".delTrain", function () {
 });
 
 
-function pageRefresh() {
-    location.reload();
-}
-var autoRefresh = setInterval(pageRefresh, 60000);
-setTimeout(autoRefresh, 1000 * 60);
+// function pageRefresh() {
+//     dataRefresh();
+// }
+var autoRefresh = setInterval(dataRefresh, 60000);
+// setTimeout(autoRefresh, 1000 * 60);
+
+function dataRefresh() {
+    $("#trainTable > tbody").empty();
+
+    database.ref().once("value", function (childSnapshot) {
+    //    console.log("Refreshed: ", childSnapshot.val());
+        console.log("Each Child: ", childSnapshot.val());
+        for(var train in childSnapshot.val()){
+            var currentTrain = childSnapshot.val()[train];
+            var trainStartConverted = moment.unix(currentTrain.start, "hh:mm").subtract(1, "years");
+            var currentTime = moment();
+            var diffTime = moment().diff(moment(trainStartConverted), "minutes");
+            var tRemainder = diffTime % currentTrain.freq;
+            var tMinutesTilTrain = currentTrain.freq - tRemainder;
+            var nextTrain = moment().add(tMinutesTilTrain, "minutes");
+
+
+            $("#trainTable > tbody").append("<tr><td>" +
+            currentTrain.name + "</td><td>" +
+            currentTrain.dest + "</td><td>" +
+            currentTrain.freq + "</td><td>" +
+            moment(nextTrain).format("h:mm a") + "</td><td>" +
+            tMinutesTilTrain + "</td><td><button class='btn btn-default delTrain'>Remove</button></td></tr>");
+
+            $(".delTrain").attr("data-key", currentTrain.key);
+        }
+    //  $("#trainTable > tbody").children.eq(3).text(moment(nextTrain).format("h:mm a"));
+    //  $("#trainTable > tbody").children.eq(4).text(tMinutesTilTrain);
+
+
+        
+
+
+    });
+};
+
+//dataRefresh();
